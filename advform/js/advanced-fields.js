@@ -24,6 +24,9 @@ $(document).ready(function(){
 
         webfonts_load_data(id);
 
+        // Populate related field if exists
+        $('input[name="conf_' + $(this).attr("name").replace("selector-conf_", '') + '_family"]').val("'" + $(this).val().replace(/\+/g,' ') + "'");
+
     });
 
     $(".rm_webfonts_container > .font-variants").on('change', 'input', function(){
@@ -259,10 +262,13 @@ $(document).ready(function(){
         eval("data = "+data);
 
         html = '<div class="adv-one-slider" data-id="'+index+'">';
-        html += '<div class="the-options">';
-        html += '<span class="title"></span>';
-        html += '<div><button class="edit" type="button" data-id="'+index+'">'+advFormLang.edit+'</button>';
-        html += '<button class="delete button" type="button" data-id="'+index+'">'+advFormLang.delete+'</button></div>';
+        html += '<div class="the-buttons">';
+        html += '<button type="button" class="close button buttonPurple" data-id="imgurl-'+id+'-'+index+'">'+advFormLang.close+'</button>';
+        html += '</div>';
+        html += '<div class="the-options input-group">';
+        html += '<span class="title form-control"></span>';
+        html += '<span class="input-group-btn"><button class="edit btn btn-default" type="button" data-id="'+index+'"><span class="fa fa-edit"></span> '+advFormLang.edit+'</button>';
+        html += '<button class="delete btn btn-warning" type="button" data-id="'+index+'"><span class="fa fa-times"></span> '+advFormLang.delete+'</button></span>';
         html += '</div>';
         html += '<div class="the-controls">';
 
@@ -271,31 +277,29 @@ $(document).ready(function(){
 
         var ic = 0;
         for(var fid in fields){
-            html += '<label for="'+id+'-'+fid+'-'+index+'">'+fields[fid].caption+'</label>';
+            html += '<div class="form-group"><label for="'+id+'-'+fid+'-'+index+'">'+fields[fid].caption+'</label>';
             switch(fields[fid].type){
                 case 'textarea':
-                    html += '<textarea name="'+name+'['+index+']['+fid+']" rows="5"></textarea>';
+                    html += '<textarea name="'+name+'['+index+']['+fid+']" rows="5" class="form-control"></textarea>';
                     break;
 
                 case 'imageurl':
-                    html += '<div class="adv_imgurl" id="iurl-container-'+id+'-'+index+'"><div><div>';
-                    html += '<div><input type="text" name="'+name+'['+index+']['+fid+']" id="imgurl-'+id+'-'+index+'" value="" size="10" /></div>';
-                    html += '<div class="adv_img_launcher" data-id="imgurl-'+id+'-'+index+'" data-title="'+advFormLang.insertImage+'">...</div>';
-                    html += '</div></div>';
+                    html += '<div class="adv_imgurl" id="iurl-container-'+id+'-'+index+'"><div class="input-group">';
+                    html += '<input type="text" name="'+name+'['+index+']['+fid+']" id="imgurl-'+id+'-'+index+'" value="" size="10" class="form-control">';
+                    html += '<span class="adv_img_launcher input-group-btn" data-id="imgurl-'+id+'-'+index+'" data-title="'+advFormLang.insertImage+'">' +
+                        '<button type="button" class="btn btn-default">...</button></span>';
+                    html += '</div>';
                     html += '<div class="img-preview"><img id="preview-imgurl-'+id+'-'+index+'" src="" /></div></div>';
                     break;
                 case 'textbox':
                 default:
-                    html += '<input type="text" name="'+name+'['+index+']['+fid+']"'+(ic==0?' class="the-title"':'')+' />';
+                    html += '<input type="text" name="'+name+'['+index+']['+fid+']"'+(ic==0?' class="the-title form-control"':'')+' />';
                     break;
             }
-            html += '<input type="hidden" name="'+name+'['+index+'][adv-field-types]['+fid+']" value="'+fields[fid].type+'">';
+            html += '</div><input type="hidden" name="'+name+'['+index+'][adv-field-types]['+fid+']" value="'+fields[fid].type+'">';
             html += '<input type="hidden" name="'+name+'['+index+'][adv-field-captions]['+fid+']" value="'+fields[fid].caption+'">';
         }
 
-        html += '</div>';
-        html += '<div class="the-buttons">';
-        html += '<button type="button" class="close button buttonPurple" data-id="imgurl-'+id+'-'+index+'">'+advFormLang.close+'</button>';
         html += '</div>';
         html += '</div>';
 

@@ -27,7 +27,8 @@ class RMFormImageUrl extends RMFormElement
         
         $ret = '<div class="adv_imgurl" id="iurl-container-'.$this->id().'"><div class="input-group txt-and-button">';
         $ret .= '<input class="form-control" type="text" name="'.$this->getName().'" id="'.$this->id().'" value="'.$this->default.'" size="10" />';
-        $ret .= '<span class="input-group-addon adv_img_launcher" data-id="'.$this->id().'" data-title="'.__('Insert Image URL','advform').'">...</span>';
+        $ret .= '<span class="input-group-btn adv_img_launcher" data-id="'.$this->id().'" data-title="'.__('Insert Image URL','advform').'">
+        <button type="button" class="btn btn-default">...</button></span>';
         $ret .= '</div>';
         $ret .= '<div class="img-preview"><img id="preview-'.$this->id().'" src="'.$this->default.'"'.($this->default!='' ? ' style="display: inline-block;"' : '').' /></div></div>';
         return $ret;

@@ -20,7 +20,7 @@ class RMFormColorSelector extends RMFormElement
         $this->sharp = $addsharp;
         
         if($addsharp && $initial!=''){
-            if(!preg_match("/^#[a-f0-9]{1,}$/is", $initial))
+            if(!preg_match("/^#[a-f0-9]{1,}$/is", $initial) && $initial != 'transparent')
                 $this->initial = '#'.$initial;
             else
                 $this->initial = $initial;

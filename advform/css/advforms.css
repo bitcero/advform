@@ -115,29 +115,31 @@
     min-width: 300px;
     position: fixed;
     top: 0;
-    left: 7.5%;
-    right: 7.5%;
-    border: 1px solid #999;
-    border-top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2.5%;
+    border: 0;
     display: none;
     z-index: 1083;
 }
 .advmgr_container .window-title{
-    font-size: 1.1em;
-    padding: 5px;
+    padding: 10px;
+    font-weight: normal;
+    font-size: 1.2em;
 }
 .advmgr_container .window-title span{
     display: block;
+    position: absolute;
     width: 18px;
     height: 18px;
-    position: absolute;
-    right: 10px;
+    right: 2.8%;
     background: url(../imgs/closeb.png) no-repeat center;
     cursor: pointer;
 }
 .advmgr_container iframe{
     width: 100%;
-    margin: 0;
+    height: 100%;
     border: 0;
 }
 

@@ -160,7 +160,7 @@ $(document).ready(function(){
 
         var html = '<div id="blocker-'+id+'" class="advmgr_blocker"></div><div id="window-'+id+'" class="advmgr_container">';
         html += '<div class="window-title cu-titlebar"><span></span>'+imgmgr_title+'</div>';
-        html += '<div class="advmgr_content"><iframe src="'+mgrURL+'?target=advInsertUrl&amp;idcontainer='+id+'&amp;type=external" name="image"></iframe></div>'
+        html += '<iframe src="'+mgrURL+'?target=advInsertUrl&amp;idcontainer='+id+'&amp;type=external&amp;multi=no" name="image"></iframe></div>'
         html += '</div>';
         $("body").append(html);
 
@@ -169,9 +169,6 @@ $(document).ready(function(){
 
         $("#blocker-"+id).fadeIn('fast', function(){
             $("body").css('overflow','hidden');
-            var h = $(window).height();
-            var nh = h-$("#window-"+id+" .th").height()-30;
-            $("#window-"+id+" iframe").css('height', nh+'px');
             $("#window-"+id).fadeIn('fast', function(){
 
             });

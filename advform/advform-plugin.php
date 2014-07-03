@@ -17,7 +17,7 @@ class AdvformCUPlugin extends RMIPlugin
         $this->info = array(
             'name'          => __('AdvancedForms Plugin', 'advform'),
             'description'   => __('Improves rmcommon forms by addign new fields and controls','advform'),
-            'version'       => array('major'=>0,'minor'=>2,'revision'=>34, 'stage'=>-2,'name'=>'AdvancedForms'),
+            'version'       => array('major'=>0,'minor'=>2,'revision'=>40, 'stage'=>-1,'name'=>'AdvancedForms'),
             'author'        => 'Eduardo Cortes',
             'email'         => 'i.bitcero@gmail.com',
             'web'           => 'http://www.redmexico.com.mx',

@@ -11,23 +11,50 @@ $(document).ready(function(){
     * WebFonts Control
     * Next events are related to WebFonts control
     */
-    $(".rm_webfonts_container > select").change(function(){
+    $(".rm_webfonts_container select").change(function(){
 
-        id = $(this).attr("id").replace("selector-",'');
+        var id = $(this).attr("id").replace("selector-",'');
 
         if($(this).val()==''){
             $("#"+id).val('');
-            $("#webfont-"+id+" > div").fadeOut('fast');
+            $("#webfont-"+id+" .control").slideUp(250);
             $("#webfont-previewer-"+id).attr("href", '');
+            $("#webfont-"+id+" .btn-show").data("status", 'hidden').prop("disabled", 'disabled').find(".fa").removeClass("fa-caret-up").addClass("fa-caret-down");
             return;
         }
 
+        $("#webfont-"+id+" .btn-show").removeAttr("disabled");
+
         webfonts_load_data(id);
 
+        if ( $("#webfont-"+id+" .btn-show").data('status') == 'hidden' )
+            $("#webfont-"+id+" .btn-show").click();
+
         // Populate related field if exists
-        $('input[name="conf_' + $(this).attr("name").replace("selector-conf_", '') + '_family"]').val("'" + $(this).val().replace(/\+/g,' ') + "'");
+        $('input[data-rel="' + $(this).attr("name").replace("selector-", '') + '"]').val("'" + $(this).val().replace(/\+/g,' ') + "'");
 
     });
+
+    $(".rm_webfonts_container .btn-show").click( function(){
+
+        var id = $( this).data( "id" );
+
+        var sel = 'selector-' + id.replace("webfont-",'');
+
+        if ( $("#" + sel).val() == '')
+            return false;
+
+        $("#" + id + " .control").slideToggle('250');
+
+        if ( $(this).data( "status" ) == 'hidden' ){
+            $(this).find(".fa").removeClass("fa-caret-down").addClass("fa-caret-up");
+            $(this).data("status", 'visible');
+        } else {
+            $(this).find(".fa").removeClass("fa-caret-up").addClass("fa-caret-down");
+            $(this).data("status", 'hidden');
+        }
+
+    } );
 
     $(".rm_webfonts_container > .font-variants").on('change', 'input', function(){
 
@@ -406,12 +433,12 @@ function imgUrlInsert(ele){
 function webfonts_load_data(id){
 
     var select = $("#selector-"+id);
-    var parent = $(select).parent();
+    var parent = $("#webfont-"+id);
 
-    $(parent).children(".font-variants").fadeOut('fast');
-    $(parent).children(".font-preview").fadeOut('fast');
+   /* $(parent).find(".font-variants").fadeOut('fast');
+    $(parent).find(".font-preview").fadeOut('fast');
 
-    $(parent).children(".font-subsets").fadeOut('fast', function(){
+    $(parent).find(".font-subsets").fadeOut('fast', function(){*/
 
         for(i=0;i<total;i++){
 
@@ -450,7 +477,7 @@ function webfonts_load_data(id){
                     html += '<label style="'+style+'"><input type="checkbox" name="variant[]" value="'+rmwebfonts.items[i].variants[v]+'" /> '+value+'</label>';
                 }
 
-                $(parent).children(".font-variants").children('div').html(html);
+                $(parent).find(".font-variants").children('div').html(html);
 
                 first = regular==true ? 'regular' : first;
 
@@ -460,18 +487,18 @@ function webfonts_load_data(id){
                     html += '<label><input type="checkbox" name="subset[]" value="'+rmwebfonts.items[i].subsets[s]+'" /> '+rmwebfonts.items[i].subsets[s]+'</label>';
                 }
 
-                $(parent).children(".font-subsets").children('div').html(html);
+                $(parent).find(".font-subsets").children('div').html(html);
                 //$(parent).children(".font-preview").children('div').html($(select).val());
 
                 $("#webfont-"+id+" .font-value > div").html('http://fonts.googleapis.com/css?family='+$(select).val().replace(/\s/g,"+")+(!regular ? ':'+first : ''));
                 $("#"+id).val($("#webfont-"+id+" .font-value > div").html());
                 $("#webfont-"+id+" .font-use > div").html("font-family: '"+$(select).val().replace(/\+/g,' ')+"';");
 
-                $(parent).children(".font-variants").fadeIn('fast');
+                /*$(parent).children(".font-variants").fadeIn('fast');
                 $(parent).children(".font-subsets").fadeIn('fast');
                 $(parent).children(".font-preview").fadeIn('fast');
                 $(parent).children(".font-value").fadeIn('fast');
-                $(parent).children(".font-use").fadeIn('fast');
+                $(parent).children(".font-use").fadeIn('fast');*/
 
                 $("#webfont-"+id+" .font-variants label input[value='"+first+"']").attr("checked", 'checked');
                 $("#webfont-"+id+" .font-subsets label input[value='latin']").attr("checked", 'checked');
@@ -482,7 +509,7 @@ function webfonts_load_data(id){
             }
         }
 
-    });
+    //});
 
 }
 

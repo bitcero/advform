@@ -8,7 +8,7 @@
 .rm_webfonts_container select{
     width: 100%;
 }
-.rm_webfonts_container > div{
+.rm_webfonts_container > div.control{
     overflow: hidden;
     padding: 5px 0;
     display: none;
@@ -167,4 +167,48 @@
 .adv-images-select label input:checked + span{
     border-color: #000;
     box-shadow: none;
+}
+
+/*              ICONS PICKER
+===============================================*/
+.adv-icons-picker .icons-container{
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 280px;
+    min-width: 285px;
+    max-width: 300px;
+}
+.adv-icons-picker .icons-container ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.adv-icons-picker .icons-container ul li{
+    display: inline-block;
+    margin: 1px;
+}
+.adv-icons-picker .icons-container ul li a{
+    color: #333;
+    font-size: 20px;
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    width: 28px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.2);
+    transition: ease all 250ms;
+}
+.adv-icons-picker .icons-container ul li a:hover{
+    background-color: #333;
+    color: #FFF;
+}
+.adv-icons-picker .dropdown-menu{
+    padding-top: 0;
+}
+.adv-icons-picker .icons-switcher{
+    padding: 5px;
+    text-align: center;
+    background: #ebebeb;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }

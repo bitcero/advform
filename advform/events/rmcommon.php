@@ -23,6 +23,7 @@ class AdvformPluginRmcommonPreload{
         include $path.'slider.class.php';
         include $path.'colorselector.class.php';
         include $path.'imageselect.class.php';
+        include $path.'iconpicker.class.php';
 
         $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', array('directory' => 'plugins/advform'));
         $rmTpl->add_script('advanced-fields.js', 'rmcommon', array('directory' => 'plugins/advform'));

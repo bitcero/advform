@@ -69,7 +69,7 @@ class RMFormWebfonts extends RMFormElement
         $rtn .= '<div class="control font-value"><h6>'.__('Selected Font String','advform').'</h6><div></div></div>';
         $rtn .= '<div class="control font-use"><h6>'.__('Font use:','advform').'</h6><div></div></div>';
         $rtn .= '<input type="hidden" name="'.$this->getName().'" id="'.$this->id().'" value="'.$this->selected.'" />';
-        $rtn .= '<input type="hidden" name="'.$this->getName().'_value" id="'.$this->id().'" value="'.$this->selected.'" /></div>';
+        $rtn .= '</div>';
         return $rtn;
         
     }

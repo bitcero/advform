@@ -14,6 +14,9 @@ class RMFormImageSelect extends RMFormElement
     private $width = 50;
     private $height = 50;
     private $images = array();
+    private $accepted = array(
+        'jpg','gif','png','bmp','svg'
+    );
 
     /**
      * @param string Caption of field
@@ -47,9 +50,21 @@ class RMFormImageSelect extends RMFormElement
         
         $ret = '<div class="adv-images-select" id="adv-imgsel-'.$this->id().'">';
 
+        $ret .= '<label style="width: '.$this->width.'px; height: '.$this->height.'px;"><input type="radio" name="'.$this->getName().'" value=""'.(''==$this->initial ? ' checked="checked"' : '').'>';
+        $ret .= '<span title="'.__('None', 'advform').'"></span></label>';
+
         foreach($this->images as $img){
+
             $v = $img['value'];
             $url = $img['image'];
+
+            $data = array_reverse( explode( ".", str_replace( dirname( $url ) . '/', '', $url ) ) );
+            if ( count( $data ) < 2 )
+                continue;
+
+            if ( !in_array( $data[0], $this->accepted ) )
+                continue;
+
             $ret .= '<label style="width: '.$this->width.'px; height: '.$this->height.'px;"><input type="radio" name="'.$this->getName().'" value="'.$v.'"'.($v==$this->initial ? ' checked="checked"' : '').'>';
             $ret .= '<span style="background-image: url('.$url.')" title="'.$v.'"></span></label>';
         }

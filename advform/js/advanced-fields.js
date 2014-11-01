@@ -31,7 +31,7 @@ $(document).ready(function(){
             $("#webfont-"+id+" .btn-show").click();
 
         // Populate related field if exists
-        $('input[data-rel="' + $(this).attr("name").replace("selector-", '') + '"]').val("'" + $(this).val().replace(/\+/g,' ') + "'");
+        $('input[data-rel="conf_' + $(this).attr("name").replace("selector-", '') + '"]').val("'" + $(this).val().replace(/\+/g,' ') + "'");
 
     });
 

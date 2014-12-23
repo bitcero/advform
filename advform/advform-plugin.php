@@ -17,12 +17,12 @@ class AdvformCUPlugin extends RMIPlugin
         $this->info = array(
             'name'          => __('AdvancedForms Plugin', 'advform'),
             'description'   => __('Improves rmcommon forms by addign new fields and controls','advform'),
-            'version'       => array('major'=>0,'minor'=>9,'revision'=>12, 'stage'=>-1,'name'=>'AdvancedForms'),
+            'version'       => array('major'=>0,'minor'=>9,'revision'=>13, 'stage'=>0,'name'=>'AdvancedForms'),
             'author'        => 'Eduardo Cortes',
             'email'         => 'i.bitcero@gmail.com',
             'web'           => 'http://www.redmexico.com.mx',
             'dir'           => 'advform',
-            'updateurl'     => 'http://www.xoopsmexico.net/modules/vcontrol/?action=check&id=10',
+            'updateurl'     => 'http://www.xoopsmexico.net/modules/vcontrol/',
             'hasmain'       => true
         );
         

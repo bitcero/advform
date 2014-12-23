@@ -31,6 +31,7 @@ $(document).ready(function(){
             $("#webfont-"+id+" .btn-show").click();
 
         // Populate related field if exists
+        $('#selector-' + id + '-name').val($(this).val().replace(/\+/g,' '));
         $('input[data-rel="conf_' + $(this).attr("name").replace("selector-", '') + '"]').val("'" + $(this).val().replace(/\+/g,' ') + "'");
 
     });
@@ -139,8 +140,10 @@ $(document).ready(function(){
             // Variants
             var lvariants = defvals[0].split(":");
 
-            if(lvariants[0]!='')
-                $("#selector-"+id).val(lvariants[0]);
+            if(lvariants[0]!='') {
+                $("#selector-" + id).val(lvariants[0]);
+                $("#selector-" + id + '-name').val(lvariants[0].replace(/\+/g,' '));
+            }
 
             webfonts_load_data(id);
 

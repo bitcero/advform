@@ -17,7 +17,7 @@ class AdvformCUPlugin extends RMIPlugin
         $this->info = array(
             'name'          => __('AdvancedForms Plugin', 'advform'),
             'description'   => __('Improves rmcommon forms by addign new fields and controls','advform'),
-            'version'       => array('major'=>0,'minor'=>9,'revision'=>13, 'stage'=>0,'name'=>'AdvancedForms'),
+            'version'       => array('major'=>0,'minor'=>9,'revision'=>14, 'stage'=>0,'name'=>'AdvancedForms'),
             'author'        => 'Eduardo Cortes',
             'email'         => 'i.bitcero@gmail.com',
             'web'           => 'http://www.redmexico.com.mx',
@@ -46,8 +46,7 @@ class AdvformCUPlugin extends RMIPlugin
 
     public function options(){
 
-        //require 'include/options.php';
-        return $options;
+        return null;
 
     }
 

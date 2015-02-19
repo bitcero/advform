@@ -34,7 +34,7 @@ class RMFormColorSelector extends RMFormElement
         global $rmTpl;
         
         $rmTpl->add_style("colorpicker.css", 'rmcommon');
-        $rmTpl->add_script("colorpicker.js", 'rmcommon', array('directory' => 'include'));
+        $rmTpl->add_script("colorpicker.js", 'rmcommon');
         
         $ret = '<div class="input-group adv-color-chooser" id="adv-color-'.$this->id().'">';
         $ret .= '<span class="input-group-addon previewer" style="background-color: '.(!$this->sharp ? '#'.$this->initial : $this->initial).';">&nbsp;</span>';

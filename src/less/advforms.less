@@ -171,44 +171,66 @@
 
 /*              ICONS PICKER
 ===============================================*/
-.adv-icons-picker .icons-container{
+.adv-icons-picker{
+
+  .icons-container{
     padding: 10px;
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 280px;
     min-width: 285px;
     max-width: 300px;
-}
-.adv-icons-picker .icons-container ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.adv-icons-picker .icons-container ul li{
-    display: inline-block;
-    margin: 1px;
-}
-.adv-icons-picker .icons-container ul li a{
-    color: #333;
-    font-size: 20px;
-    display: block;
-    height: 28px;
-    line-height: 28px;
-    width: 28px;
-    text-align: center;
-    border: 1px solid rgba(0,0,0,0.2);
-    transition: ease all 250ms;
-}
-.adv-icons-picker .icons-container ul li a:hover{
-    background-color: #333;
-    color: #FFF;
-}
-.adv-icons-picker .dropdown-menu{
+
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li{
+        display: inline-block;
+        margin: 2px;
+
+        a{
+          color: #333;
+          font-size: 28px;
+          display: block;
+          height: 40px;
+          line-height: 40px;
+          width: 36px;
+          text-align: center;
+          border: 1px solid rgba(0,0,0,0.2);
+          transition: ease all 250ms;
+
+          &:hover{
+            background-color: #333;
+            color: #FFF;
+          }
+
+          > .cu-icon{
+            font-size: 28px;
+            > *{
+              width: 28px;
+              height: 28px;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .dropdown-menu{
     padding-top: 0;
-}
-.adv-icons-picker .icons-switcher{
+  }
+
+  .icons-switcher{
     padding: 5px;
     text-align: center;
     background: #ebebeb;
     border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
 }

@@ -21,9 +21,8 @@ class RMFormImageUrl extends RMFormElement
     }
     
     public function render(){
-        global $rmTpl;
         
-        $rmTpl->add_head_script('var imgmgr_title = "'.__('Image Manager','rmcommon').'"'."\n".'var mgrURL = "'.RMCURL.'/include/tiny-images.php";');
+        RMTemplate::get()->add_inline_script('var imgmgr_title = "'.__('Image Manager','rmcommon').'"'."\n".'var mgrURL = "'.RMCURL.'/include/tiny-images.php";', 1);
         
         $ret = '<div class="adv_imgurl" id="iurl-container-'.$this->id().'"><div class="input-group txt-and-button">';
         $ret .= '<input class="form-control" type="text" name="'.$this->getName().'" id="'.$this->id().'" value="'.$this->default.'" size="10" />';

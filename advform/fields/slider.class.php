@@ -14,10 +14,19 @@ class RMFormSlider extends RMFormElement
     private $fields = array();
     
     public function __construct($caption, $name, $default = array()){
-        
-        $this->setCaption($caption);
-        $this->setName($name);
-        $this->default = $default;
+
+        $this->suppressList[] = 'default';
+
+        if(is_array($caption)){
+            parent::__construct($caption);
+        } else {
+            parent::__construct([]);
+            $this->setWithDefaults('caption', $caption, '');
+            $this->setWithDefaults('name', $name, 'name_error');
+            $this->setWithDefaults('default', $default, array());
+        }
+
+        $this->addClass('adv-slider-container slider-collapse');
         
     }
     
@@ -26,13 +35,15 @@ class RMFormSlider extends RMFormElement
     }
     
     public function render(){
-        //print_r($this->default); die();
+
+        $attributes = $this->renderAttributeString();
+
         $fields = '';
         $tc = TextCleaner::getInstance();
-        foreach($this->default as $index => $slider){
+        foreach($this->get('default') as $index => $slider){
             $fields .= '<div class="adv-one-slider" data-id="'.$index.'">';
             $fields .= '<div class="the-buttons">';
-            $fields .= '<button type="button" class="close" data-id="imgurl-'.$this->id().'-'.$index.'">'.__('Close','advform').'</button>';
+            $fields .= '<button type="button" class="close" data-id="imgurl-'.$this->get('id').'-'.$index.'">'.__('Close','advform').'</button>';
             $fields .= '</div>';
             $fields .= '<div class="the-options input-group">';
             $fields .= '<span class="title form-control">'.$slider['title'].'</span>';
@@ -48,26 +59,26 @@ class RMFormSlider extends RMFormElement
                 
                 if($id=='adv-field-types' || $id=='adv-field-captions') continue;
                 
-                $fields .= '<div class="form-group"><label for="'.$this->id().'-'.$id.'-'.$index.'">'.$captions[$id].'</label>';
+                $fields .= '<div class="form-group"><label for="'.$this->get('id').'-'.$id.'-'.$index.'">'.$captions[$id].'</label>';
                 switch($types[$id]){
                     case 'textarea':
-                        $fields .= '<textarea name="'.$this->getName().'['.$index.']['.$id.']" rows="5" class="form-control">'.$tc->specialchars($value).'</textarea>';
+                        $fields .= '<textarea name="'.$this->get('name').'['.$index.']['.$id.']" rows="5" class="form-control">'.$tc->specialchars($value).'</textarea>';
                         break;
                     case 'imageurl':
-                        $fields .= '<div class="adv_imgurl" id="iurl-container-'.$this->id().'-'.$index.'"><div class="input-group">';
-                        $fields .= '<input type="text" name="'.$this->getName().'['.$index.']['.$id.']" id="imgurl-'.$this->id().'-'.$index.'" value="'.$tc->specialchars($value).'" size="10" class="form-control">';
-                        $fields .= '<span class="adv_img_launcher input-group-btn" data-id="imgurl-'.$this->id().'-'.$index.'" data-title="'.__('Inser Image','advform').'">
+                        $fields .= '<div class="adv_imgurl" id="iurl-container-'.$this->get('id').'-'.$index.'"><div class="input-group">';
+                        $fields .= '<input type="text" name="'.$this->get('name').'['.$index.']['.$id.']" id="imgurl-'.$this->get('id').'-'.$index.'" value="'.$tc->specialchars($value).'" size="10" class="form-control">';
+                        $fields .= '<span class="adv_img_launcher input-group-btn" data-id="imgurl-'.$this->get('id').'-'.$index.'" data-title="'.__('Inser Image','advform').'">
                                 <button class="btn btn-default" type="button">...</button></span>';
                         $fields .= '</div>';
-                        $fields .= '<div class="img-preview"><img style="display: inline-block;" id="preview-imgurl-'.$this->id().'-'.$index.'" src="'.$tc->specialchars($value).'" /></div></div>';
+                        $fields .= '<div class="img-preview"><img style="display: inline-block;" id="preview-imgurl-'.$this->get('id').'-'.$index.'" src="'.$tc->specialchars($value).'" /></div></div>';
                         break;
                     case 'textbox':
-                        $fields .= '<input type="text" class="form-control" name="'.$this->getName().'['.$index.']['.$id.']"'.($ic==0?' class="the-title"':'').' value="'.$tc->specialchars($value).'" />';
+                        $fields .= '<input type="text" class="form-control" name="'.$this->get('name').'['.$index.']['.$id.']"'.($ic==0?' class="the-title"':'').' value="'.$tc->specialchars($value).'" />';
                         break;
                     
                 }
-                $fields .= '</div><input type="hidden" name="'.$this->getName().'['.$index.'][adv-field-types]['.$id.']" value="'.$types[$id].'">';
-                $fields .= '<input type="hidden" name="'.$this->getName().'['.$index.'][adv-field-captions]['.$id.']" value="'.$captions[$id].'">';
+                $fields .= '</div><input type="hidden" name="'.$this->get('name').'['.$index.'][adv-field-types]['.$id.']" value="'.$types[$id].'">';
+                $fields .= '<input type="hidden" name="'.$this->get('name').'['.$index.'][adv-field-captions]['.$id.']" value="'.$captions[$id].'">';
                 $ic++;
                 
             }
@@ -77,9 +88,9 @@ class RMFormSlider extends RMFormElement
             
         }
         
-        $rtn = '<div class="adv-slider-container slider-collapse" id="'.$this->id().'">';
+        $rtn = '<div '.$attributes.'>';
         $rtn .= $fields;
-        $rtn .= '<div class="data-fields">'.json_encode(array('name'=>$this->getName(), 'fields'=>$this->fields)).'</div>';
+        $rtn .= '<div class="data-fields">'.json_encode(array('name'=>$this->get('name'), 'fields'=>$this->fields)).'</div>';
         $rtn .= '<div class="button-add form-group text-right" style="margin-top: 6px;"><button class="btn btn-success" type="button">'.__('Add New','advform').'</button></div>
                 </div>';
         

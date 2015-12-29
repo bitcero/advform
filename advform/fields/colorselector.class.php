@@ -10,35 +10,49 @@
 
 class RMFormColorSelector extends RMFormElement
 {
-    private $initial = '';
-    private $sharp = false;
     
     public function __construct($caption, $name, $initial, $addsharp = false){
+
+        $this->suppressList[] = 'initial';
+        $this->suppressList[] = 'sharp';
+        $this->suppressList[] = 'id';
+
+        if(is_array($caption)){
+            parent::__construct($caption);
+        } else {
+            parent::__construct([]);
+            $this->setWithDefaults('caption', $caption, '');
+            $this->setWithDefaults('name', $name, '');
+            $this->setWithDefaults('initial', $initial, '');
+            $this->setWithDefaults('sharp', $addsharp, false);
+        }
+
+        $this->setIfNotSet('sharp', false);
         
-        $this->setCaption($caption);
-        $this->setName($name);
-        $this->sharp = $addsharp;
+        $this->addClass('input-group adv-color-chooser');
         
         if($addsharp && $initial!=''){
             if(!preg_match("/^#[a-f0-9]{1,}$/is", $initial) && $initial != 'transparent')
-                $this->initial = '#'.$initial;
+                $this->set('initial', '#'.$initial);
             else
-                $this->initial = $initial;
+                $this->set('initial', $initial);
         } else {
-            $this->initial = str_replace('#', '', $initial);
+            $this->set('initial', str_replace('#', '', $initial));
         }
 
     }
     
     public function render(){
         global $rmTpl;
-        
+
+        $attributes = $this->renderAttributeString();
+
         $rmTpl->add_style("colorpicker.css", 'rmcommon');
         $rmTpl->add_script("colorpicker.js", 'rmcommon');
         
-        $ret = '<div class="input-group adv-color-chooser" id="adv-color-'.$this->id().'">';
-        $ret .= '<span class="input-group-addon previewer" style="background-color: '.(!$this->sharp ? '#'.$this->initial : $this->initial).';">&nbsp;</span>';
-        $ret .= '<input class="form-control" '.($this->sharp ? 'data="#"' : '').' type="text" name="'.$this->getName().'" id="'.$this->id().'" value="'.($this->initial!='' ? $this->initial : ($this->sharp ? '#' : '').'FFF').'" />';
+        $ret = '<div '.$attributes.' id="adv-color-'.$this->get('id').'">';
+        $ret .= '<span class="input-group-addon previewer" style="background-color: '.(!$this->get('sharp') ? '#'.$this->get('initial') : $this->get('initial')).';">&nbsp;</span>';
+        $ret .= '<input class="form-control" '.($this->get('sharp') ? 'data="#"' : '').' type="text" name="'.$this->get('name').'" id="'.$this->get('id').'" value="'.($this->get('initial')!='' ? $this->get('initial') : ($this->get('sharp') ? '#' : '').'FFF').'" />';
         $ret .= '<span class="input-group-btn chooser"><button type="button" class="btn btn-default">...</button></span>';
         $ret .= '</div>';
         

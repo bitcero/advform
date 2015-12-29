@@ -29,22 +29,40 @@ class RMFormIconsPicker extends RMFormElement
      */
     public function __construct( $caption, $name, $options = array() ){
 
-        $this->setCaption( $caption );
-        $this->setName( $name );
-        $this->default = isset( $options['selected'] ) ? $options['selected'] : '';
-        $this->fa = isset( $options['fontawesome'] ) ? $options['fontawesome'] : 1;
-        $this->glyph = isset( $options['glyphicons'] ) ? $options['glyphicons'] : 1;
+        $suppress = ['default', 'fa', 'glyph', 'svg', 'size', 'id'];
+        $this->suppressList = array_merge($this->suppressList, $suppress);
 
-        $size = isset( $options['size'] ) ? $options['size'] : '';
-        $accepted_sizes = array('lg','sm','xs');
-        $this->size = in_array( $size, $accepted_sizes ) ? $size : '';
+        if(is_array($caption)){
+            parent::__construct($caption);
+        } else {
+            parent::__construct([]);
+            $this->setWithDefaults('caption', $caption, '');
+            $this->setWithDefaults('name', $name, '');
+            $this->setWithDefaults('default', array_key_exists('selected', $options ) ? $options['selected'] : '', '');
+            $this->set('fa', array_key_exists('fontawesome', $options) ? $options['fontawesome'] : true);
+            $this->set('glyph', array_key_exists('glyphicons', $options) ? $options['glyphicons'] : false);
+            $this->set('moon', array_key_exists('moon', $options) ? $options['moon'] : false);
+            $this->set('svg', array_key_exists('svg', $options) ? $options['svg'] : true);
+            $this->set('size', array_key_exists('size', $options) ? $options['size'] : '');
+        }
+
+        $this->setIfNotSet('fa', true);
+        $this->setIfNotSet('glyph', false);
+        $this->setIfNotSet('moon', false);
+        $this->setIfNotSet('svg', true);
+        $this->setIfNotSet('size', '');
+
+        $this->addClass('adv-icons-picker');
 
     }
 
     public function render(){
+        global $cuIcons;
 
-        RMTemplate::get()->add_script( 'icon-picker.js', 'rmcommon', array('directory' => 'plugins/advform' ) );
-        RMTemplate::get()->add_style( 'bootstrap-iconpicker.min.css', 'rmcommon', array('directory' => 'plugins/advform' ) );
+        RMTemplate::get()->add_script( 'advanced-fields.min.js', 'rmcommon', array( 'directory' => 'plugins/advform', 'footer' => 1, 'id' => 'advform-js' ) );
+        RMTemplate::get()->add_style( 'advforms.min.css', 'rmcommon', array('directory' => 'plugins/advform', 'id' => 'advform-css' ) );
+
+        $attributes = $this->renderAttributeString();
 
         include RMCPATH . '/plugins/advform/templates/icon-picker.php';
 

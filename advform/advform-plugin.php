@@ -1,12 +1,31 @@
 <?php
-// $Id: advform-plugin.php 11036 2013-02-12 04:03:30Z bitc3r0 $
-// --------------------------------------------------------------
-// AdvancedForm plugin for Common Utilities
-// Improves rmcommon forms by adding new fields and controls
-// Author: Eduardo Cortés <i.bitcero@gmail.com>
-// Email: i.bitcero@gmail.com
-// License: GPL 2.0
-// --------------------------------------------------------------
+/**
+ * Advanced Form Fields for Common Utilities
+ *
+ * Copyright © 2015 Eduardo Cortés http://www.redmexico.com.mx
+ * -------------------------------------------------------------
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * -------------------------------------------------------------
+ * @copyright    Eduardo Cortés (http://www.redmexico.com.mx)
+ * @license      GNU GPL 2
+ * @package      advform
+ * @author       Eduardo Cortés (AKA bitcero)    <i.bitcero@gmail.com>
+ * @url          http://www.redmexico.com.mx
+ * @url          http://www.eduardocortes.mx
+ */
 
 class AdvformCUPlugin extends RMIPlugin
 {
@@ -17,8 +36,8 @@ class AdvformCUPlugin extends RMIPlugin
         $this->info = array(
             'name'          => __('AdvancedForms Plugin', 'advform'),
             'description'   => __('Improves rmcommon forms by addign new fields and controls','advform'),
-            'version'       => array('major'=>0,'minor'=>9,'revision'=>14, 'stage'=>0,'name'=>'AdvancedForms'),
-            'author'        => 'Eduardo Cortes',
+            'version'       => array('major'=>0,'minor'=>9,'revision'=>16, 'stage'=>0,'name'=>'AdvancedForms'),
+            'author'        => 'Eduardo Cortes (AKA bitcero)',
             'email'         => 'i.bitcero@gmail.com',
             'web'           => 'http://www.redmexico.com.mx',
             'dir'           => 'advform',
@@ -94,22 +113,40 @@ class AdvformCUPlugin extends RMIPlugin
         ) );
         $form->addElement( $slider );
 
-        $icon = new RMFormIconsPicker( __('Pick an icon:', 'advform') , 'icon', array(
-            'selected' => 'fa fa-flag'
+        //--
+        $icon = new RMFormIconsPicker( __('All icons:', 'advform') , 'icon', array(
+            'selected' => 'fa fa-flag',
+            'moon' => true,
+            'fontawesome' => true,
+            'glyphicons' => true,
+            'svg' => true
         ) );
         $icon->setDescription( __('With FontAwesome and Glyphicons active', 'advform'));
         $form->addElement( $icon );
 
-        $icon = new RMFormIconsPicker( __('Pick an icon:', 'advform') , 'icon1', array(
+        //--
+        $icon = new RMFormIconsPicker( __('Glyphicons Icons:', 'advform') , 'icon1', array(
             'selected' => 'glyphicon glyphicon-plus',
-            'fontawesome' => 0
+            'fontawesome' => false,
+            'svg' => false
         ) );
         $icon->setDescription( __('Only Glyphicons active', 'advform'));
         $form->addElement( $icon );
 
-        $icon = new RMFormIconsPicker( __('Pick an icon:', 'advform') , 'icon2', array(
+        //--
+        $icon = new RMFormIconsPicker( __('FontAwesome Icons:', 'advform') , 'icon2', array(
             'selected' => 'fa fa-flag',
-            'glyphicons' => 0
+            'glyphicons' => false,
+            'svg' => false
+        ) );
+        $icon->setDescription( __('Only FontAwesome active', 'advform'));
+        $form->addElement( $icon );
+
+        //--
+        $icon = new RMFormIconsPicker( __('SVG Icons:', 'advform') , 'icon3', array(
+            'selected' => 'svg-rmcommon-xoops',
+            'glyphicons' => false,
+            'fontawesome' => false
         ) );
         $icon->setDescription( __('Only FontAwesome active', 'advform'));
         $form->addElement( $icon );

@@ -1,11 +1,18 @@
-/**
- * $Id: advanced-fields.js 11044 2013-02-13 04:54:14Z bitc3r0 $
- */
+/*!
+ Advanced Form Fields for Common Utilities
+ @author: Eduardo Cortés (AKA bitcero)
+ @url: http://www.redmexico.com.mx
+ @license: GPL 2
+*/
+
+// @prepros-prepend 'icon-picker.js'
 
 var total = rmwebfonts.items!=undefined ? rmwebfonts.items.length : 0;
 var sliderCounter = new Array();
 
 $(document).ready(function(){
+
+    $(".adv-icons-picker").advIconPicker({icons:'glyphicons'});
 
     /**
     * WebFonts Control

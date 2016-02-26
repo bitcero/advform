@@ -29,14 +29,14 @@
 
 class AdvformCUPlugin extends RMIPlugin
 {
-    
+
     public function __construct(){
         load_plugin_locale('advform', '', 'rmcommon');
-        
+
         $this->info = array(
             'name'          => __('AdvancedForms Plugin', 'advform'),
             'description'   => __('Improves rmcommon forms by addign new fields and controls','advform'),
-            'version'       => array('major'=>0,'minor'=>9,'revision'=>16, 'stage'=>0,'name'=>'AdvancedForms'),
+            'version'       => array('major'=>1,'minor'=>0,'revision'=>3, 'stage'=>0,'name'=>'AdvancedForms'),
             'author'        => 'Eduardo Cortes (AKA bitcero)',
             'email'         => 'i.bitcero@gmail.com',
             'web'           => 'http://www.redmexico.com.mx',
@@ -44,9 +44,9 @@ class AdvformCUPlugin extends RMIPlugin
             'updateurl'     => 'http://www.xoopsmexico.net/modules/vcontrol/',
             'hasmain'       => true
         );
-        
+
     }
-    
+
     public function on_install(){
         return true;
     }
@@ -156,6 +156,14 @@ class AdvformCUPlugin extends RMIPlugin
         RMTemplate::get()->footer();
 
     }
-    
-    
+
+    public function getInstance(){
+      static $instance;
+
+      if(!isset($instance)){
+        $instance = new AdvformCUPlugin();
+      }
+
+      return $instance;
+    }
 }

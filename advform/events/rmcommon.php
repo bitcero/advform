@@ -25,10 +25,22 @@ class AdvformPluginRmcommonPreload{
         include $path.'imageselect.class.php';
         include $path.'iconpicker.class.php';
 
-        $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', array('directory' => 'plugins/advform'));
-        $rmTpl->add_script('advanced-fields.js', 'rmcommon', array('directory' => 'plugins/advform'));
-        $rmTpl->add_style('advforms.css', 'rmcommon', array('directory' => 'plugins/advform'));
+        $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', array('footer' => 1, 'directory' => 'plugins/advform'));
+        $rmTpl->add_script('advanced-fields.min.js', 'rmcommon', array('footer' => 1, 'directory' => 'plugins/advform', 'id' => 'advform-js'));
+        $rmTpl->add_style('advforms.min.css', 'rmcommon', array('directory' => 'plugins/advform'));
         $rmTpl->add_head_script(include_once(RMCPATH.'/plugins/advform/js/adv-lang.php'));
+
+    }
+
+    public function eventRmcommonLoadFormField($ele, $field){
+
+        switch ($field->field){
+            case 'image-url':
+                $ele = new RMFormImageUrl( $field->caption, $field->name, $field->value);
+                break;
+        }
+
+        return $ele;
 
     }
     

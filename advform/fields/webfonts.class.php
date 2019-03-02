@@ -22,7 +22,8 @@ class RMFormWebfonts extends RMFormElement
     * @param int Initial selected option
     * @return RMFormWebfonts
     */
-    public function __construct($caption, $name, $selected = null){
+    public function __construct($caption, $name, $selected = null)
+    {
         $this->setCaption($caption);
         $this->setName($name);
         $this->selected = $selected;
@@ -31,8 +32,8 @@ class RMFormWebfonts extends RMFormElement
     /**
     * Render the control
     */
-    public function render(){
-
+    public function render()
+    {
         $tpl = RMTemplate::get();
         $tpl->add_head('<link rel="stylesheet" type="text/css" media="all" href="" id="webfont-previewer-'.$this->id().'" />');
         
@@ -44,12 +45,13 @@ class RMFormWebfonts extends RMFormElement
             )
         );
         
-        if(ini_get('allow_url_fopen')==1){
-            if(!file_exists(XOOPS_CACHE_PATH.'/webfonts.fon') || file_get_contents(XOOPS_CACHE_PATH.'/webfonts.fon')=='')
+        if (ini_get('allow_url_fopen')==1) {
+            if (!file_exists(XOOPS_CACHE_PATH.'/webfonts.fon') || file_get_contents(XOOPS_CACHE_PATH.'/webfonts.fon')=='') {
                 file_put_contents(XOOPS_CACHE_PATH.'/webfonts.fon', file_get_contents('https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyDGUH6pOxOO96PF3C1xjAucyoATpJAxA7U'));
-            elseif (filemtime(XOOPS_CACHE_PATH.'/webfonts.fon')<(time()-(7*86400)))
+            } elseif (filemtime(XOOPS_CACHE_PATH.'/webfonts.fon')<(time()-(7*86400))) {
                 file_put_contents(XOOPS_CACHE_PATH.'/webfonts.fon', file_get_contents('https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyDGUH6pOxOO96PF3C1xjAucyoATpJAxA7U'));
-        } elseif(!file_exists(XOOPS_CACHE_PATH.'/webfonts.fon') || file_get_contents(XOOPS_CACHE_PATH.'/webfonts.fon')=='') {
+            }
+        } elseif (!file_exists(XOOPS_CACHE_PATH.'/webfonts.fon') || file_get_contents(XOOPS_CACHE_PATH.'/webfonts.fon')=='') {
             file_put_contents(XOOPS_CACHE_PATH.'/webfonts.fon', file_get_contents(RMCPATH.'/plugins/advform/webfonts.fon'));
         }
 
@@ -57,21 +59,20 @@ class RMFormWebfonts extends RMFormElement
         
         $rtn = '<div class="rm_webfonts_container" id="webfont-'.$this->id().'">';
         $rtn .= '<div class="input-group"><select name="selector-'.$this->getName().'" id="selector-'.$this->id().'" class="form-control">';
-        $rtn .= '<option value="">'.__('Select font...','advform').'</option>';
-        foreach($fonts['items'] as $font){
+        $rtn .= '<option value="">'.__('Select font...', 'advform').'</option>';
+        foreach ($fonts['items'] as $font) {
             $rtn .= '<option value="'.(str_replace(" ", "+", $font['family'])).'">'.$font['family'].'</option>';
         }
         $rtn .= '</select><span class="input-group-btn"><button type="button" class="btn btn-show" data-status="hidden" data-id="webfont-'.$this->id().'"><span class="fa fa-caret-down"></span></button></span></div>';
-        $rtn .= ini_get('allow_url_fopen')!=1 ? __('fopen_wrappers are disabled. Webfonts could not retrieved!','advform') : '';
-        $rtn .= '<div class="control font-variants"><h6>'.__('Choose Styles','advform').'</h6><div></div></div>';
-        $rtn .= '<div class="control font-subsets"><h6>'.__('Choose Character Sets','advform').'</h6><div></div></div>';
-        $rtn .= '<div class="control font-preview"><h6>'.__('Font Preview','advform').'</h6><div>'.__('This is the font preview area.','advform').'</div></div>';
-        $rtn .= '<div class="control font-value"><h6>'.__('Selected Font String','advform').'</h6><div></div></div>';
-        $rtn .= '<div class="control font-use"><h6>'.__('Font use:','advform').'</h6><div></div></div>';
+        $rtn .= ini_get('allow_url_fopen')!=1 ? __('fopen_wrappers are disabled. Webfonts could not retrieved!', 'advform') : '';
+        $rtn .= '<div class="control font-variants"><h6>'.__('Choose Styles', 'advform').'</h6><div></div></div>';
+        $rtn .= '<div class="control font-subsets"><h6>'.__('Choose Character Sets', 'advform').'</h6><div></div></div>';
+        $rtn .= '<div class="control font-preview"><h6>'.__('Font Preview', 'advform').'</h6><div>'.__('This is the font preview area.', 'advform').'</div></div>';
+        $rtn .= '<div class="control font-value"><h6>'.__('Selected Font String', 'advform').'</h6><div></div></div>';
+        $rtn .= '<div class="control font-use"><h6>'.__('Font use:', 'advform').'</h6><div></div></div>';
         $rtn .= '<input type="hidden" name="'.$this->getName().'" id="'.$this->id().'" value="'.$this->selected.'">';
         $rtn .= '<input type="hidden" name="'.$this->getName().'_name" id="selector-'.$this->id().'-name" value="">';
         $rtn .= '</div>';
         return $rtn;
-        
     }
 }

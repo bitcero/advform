@@ -8,9 +8,9 @@
     </span>
 
     <!-- SVG icons -->
-    <?php if($this->get('svg')): ?>
+    <?php if ($this->get('svg')): ?>
         <div class="btn-group <?php echo $this->get('size') != '' ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-svg" id="picker-<?php echo $this->get('id'); ?>">
-            <button type="button" class="btn btn-default dropdown-toggle<?php echo substr( $this->get('default'), 0, 3)=='svg' ? ' active' : ''; ?>" data-toggle="dropdown">
+            <button type="button" class="btn btn-default dropdown-toggle<?php echo substr($this->get('default'), 0, 3)=='svg' ? ' active' : ''; ?>" data-toggle="dropdown">
                 <span class="the-icon"><?php _e('SVG Icons', 'advform'); ?></span>
                 <span class="caret"></span>
             </button>
@@ -20,7 +20,7 @@
                     $icons = $cuIcons->getIconsList();
                     ?>
                     <ul>
-                        <?php foreach($icons as $icon): ?>
+                        <?php foreach ($icons as $icon): ?>
                             <li><a href="#" title="<?php echo $icon; ?>" data-icon="<?php echo $icon; ?>"><?php echo $cuIcons->getIcon($icon); ?></a></li>
                         <?php endforeach; ?>
                     </ul>
@@ -30,9 +30,9 @@
     <?php endif; ?>
 
     <!--- FontAwesome Icons -->
-    <?php if ( $this->get('fa') ): ?>
+    <?php if ($this->get('fa')): ?>
     <div class="btn-group <?php echo $this->get('size') != '' ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-fa" id="picker-<?php echo $this->get('id'); ?>">
-        <button type="button" class="btn btn-default dropdown-toggle<?php echo substr( $this->get('default'), 0, 2)=='fa' ? ' active' : ''; ?>" data-toggle="dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle<?php echo substr($this->get('default'), 0, 2)=='fa' ? ' active' : ''; ?>" data-toggle="dropdown">
             <span class="the-icon"><?php _e('FontAwesome', 'advform'); ?></span>
             <span class="caret"></span>
         </button>
@@ -44,10 +44,10 @@
     </div>
     <?php endif; ?>
 
-    <?php if ( $this->get('glyph') ): ?>
+    <?php if ($this->get('glyph')): ?>
     <!-- Glyphicons Icons -->
     <div class="btn-group <?php echo $this->get('size') != '' ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-glyph" id="picker-<?php echo $this->get('id'); ?>">
-        <button type="button" class="btn btn-default dropdown-toggle<?php echo substr( $this->get('default'), 0, 9)=='glyphicon' ? ' active' : ''; ?>" data-toggle="dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle<?php echo substr($this->get('default'), 0, 9)=='glyphicon' ? ' active' : ''; ?>" data-toggle="dropdown">
             <span class="the-icon"><?php _e('Glyphicons', 'advform'); ?></span>
             <span class="caret"></span>
         </button>
@@ -60,9 +60,9 @@
     <?php endif; ?>
 
     <!-- IcoMoon Icons -->
-    <?php if ( $this->get('moon') ): ?>
+    <?php if ($this->get('moon')): ?>
         <div class="btn-group <?php echo $this->get('size') != '' ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-icomoon" id="picker-<?php echo $this->get('id'); ?>">
-            <button type="button" class="btn btn-default dropdown-toggle<?php echo substr( $this->get('default'), 0, 9)=='icon' ? ' active' : ''; ?>" data-toggle="dropdown">
+            <button type="button" class="btn btn-default dropdown-toggle<?php echo substr($this->get('default'), 0, 9)=='icon' ? ' active' : ''; ?>" data-toggle="dropdown">
                 <span class="the-icon"><?php _e('IcoMoon', 'advform'); ?></span>
                 <span class="caret"></span>
             </button>

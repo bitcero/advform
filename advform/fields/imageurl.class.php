@@ -12,25 +12,23 @@ class RMFormImageUrl extends RMFormElement
 {
     private $default = '';
     
-    public function __construct($caption, $name, $value = ''){
-        
+    public function __construct($caption, $name, $value = '')
+    {
         $this->setCaption($caption);
         $this->setName($name);
         $this->default = $value;
-        
     }
     
-    public function render(){
-        
-        RMTemplate::get()->add_inline_script('var imgmgr_title = "'.__('Image Manager','rmcommon').'"'."\n".'var mgrURL = "'.RMCURL.'/include/tiny-images.php";', 1);
+    public function render()
+    {
+        RMTemplate::get()->add_inline_script('var imgmgr_title = "'.__('Image Manager', 'rmcommon').'"'."\n".'var mgrURL = "'.RMCURL.'/include/tiny-images.php";', 1);
         
         $ret = '<div class="adv_imgurl" id="iurl-container-'.$this->id().'"><div class="input-group txt-and-button">';
         $ret .= '<input class="form-control" type="text" name="'.$this->getName().'" id="'.$this->id().'" value="'.$this->default.'" size="10" />';
-        $ret .= '<span class="input-group-btn adv_img_launcher" data-id="'.$this->id().'" data-title="'.__('Insert Image URL','advform').'">
+        $ret .= '<span class="input-group-btn adv_img_launcher" data-id="'.$this->id().'" data-title="'.__('Insert Image URL', 'advform').'">
         <button type="button" class="btn btn-default">...</button></span>';
         $ret .= '</div>';
         $ret .= '<div class="img-preview"><img id="preview-'.$this->id().'" src="'.$this->default.'"'.($this->default!='' ? ' style="display: inline-block;"' : '').' /></div></div>';
         return $ret;
     }
-    
 }

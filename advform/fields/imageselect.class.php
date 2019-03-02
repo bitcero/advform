@@ -25,14 +25,14 @@ class RMFormImageSelect extends RMFormElement
      * @param int Width of image thumbnail
      * @param int Height of image thumbnail
      */
-    public function __construct($caption, $name, $initial, $width = 50, $height = 50){
-
+    public function __construct($caption, $name, $initial, $width = 50, $height = 50)
+    {
         $this->suppressList[] = 'initial';
         $this->suppressList[] = 'width';
         $this->suppressList[] = 'height';
         $this->suppressList[] = 'id';
 
-        if(is_array($caption)){
+        if (is_array($caption)) {
             parent::__construct($caption);
         } else {
             parent::__construct([]);
@@ -48,7 +48,6 @@ class RMFormImageSelect extends RMFormElement
         $this->setIfNotSet('height', 50);
 
         $this->addClass('adv-images-select');
-
     }
 
     /**
@@ -56,13 +55,13 @@ class RMFormImageSelect extends RMFormElement
      * @param mixed value
      * @param string image url
      */
-    public function addImage($value, $image){
-
+    public function addImage($value, $image)
+    {
         $this->images[] = array('value' => $value, 'image' => $image);
-
     }
 
-    public function render(){
+    public function render()
+    {
         global $rmTpl;
 
         $attributes = $this->renderAttributeString();
@@ -72,17 +71,18 @@ class RMFormImageSelect extends RMFormElement
         $ret .= '<label style="width: '.$this->get('width').'px; height: '.$this->get('height').'px;"><input type="radio" name="'.$this->get('name').'" value=""'.(''==$this->get('initial') ? ' checked="checked"' : '').'>';
         $ret .= '<span title="'.__('None', 'advform').'"></span></label>';
 
-        foreach($this->images as $img){
-
+        foreach ($this->images as $img) {
             $v = $img['value'];
             $url = $img['image'];
 
-            $data = array_reverse( explode( ".", str_replace( dirname( $url ) . '/', '', $url ) ) );
-            if ( count( $data ) < 2 )
+            $data = array_reverse(explode(".", str_replace(dirname($url) . '/', '', $url)));
+            if (count($data) < 2) {
                 continue;
+            }
 
-            if ( !in_array( $data[0], $this->accepted ) )
+            if (!in_array($data[0], $this->accepted)) {
                 continue;
+            }
 
             $ret .= '<label style="width: '.$this->get('width').'px; height: '.$this->get('height').'px;"><input type="radio" name="'.$this->get('name').'" value="'.$v.'"'.($v==$this->get('initial') ? ' checked="checked"' : '').'>';
             $ret .= '<span style="background-image: url('.$url.')" title="'.$v.'"></span></label>';
@@ -91,7 +91,5 @@ class RMFormImageSelect extends RMFormElement
         $ret .= '</div>';
         
         return $ret;
-        
     }
-    
 }

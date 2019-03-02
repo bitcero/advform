@@ -10,14 +10,13 @@
 
 class RMFormColorSelector extends RMFormElement
 {
-    
-    public function __construct($caption, $name, $initial, $addsharp = false){
-
+    public function __construct($caption, $name, $initial, $addsharp = false)
+    {
         $this->suppressList[] = 'initial';
         $this->suppressList[] = 'sharp';
         $this->suppressList[] = 'id';
 
-        if(is_array($caption)){
+        if (is_array($caption)) {
             parent::__construct($caption);
         } else {
             parent::__construct([]);
@@ -31,18 +30,19 @@ class RMFormColorSelector extends RMFormElement
         
         $this->addClass('input-group adv-color-chooser');
         
-        if($addsharp && $initial!=''){
-            if(!preg_match("/^#[a-f0-9]{1,}$/is", $initial) && $initial != 'transparent')
+        if ($addsharp && $initial!='') {
+            if (!preg_match("/^#[a-f0-9]{1,}$/is", $initial) && $initial != 'transparent') {
                 $this->set('initial', '#'.$initial);
-            else
+            } else {
                 $this->set('initial', $initial);
+            }
         } else {
             $this->set('initial', str_replace('#', '', $initial));
         }
-
     }
     
-    public function render(){
+    public function render()
+    {
         global $rmTpl;
 
         $attributes = $this->renderAttributeString();
@@ -57,7 +57,5 @@ class RMFormColorSelector extends RMFormElement
         $ret .= '</div>';
         
         return $ret;
-        
     }
-    
 }

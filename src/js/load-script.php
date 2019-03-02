@@ -16,9 +16,11 @@ $xoopsOption['nocommon'] = 1;
 require dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))).'/mainfile.php';
 
 $script = isset($_GET['script']) ? $_GET['script'] : '';
-if($script=='') die();
+if ($script=='') {
+    die();
+}
 
-switch($script){
+switch ($script) {
     case 'webfonts':
         $fonts = file_get_contents(XOOPS_VAR_PATH.'/caches/xoops_cache/webfonts.fon');
         echo 'var rmwebfonts = '.($fonts!='' ? $fonts : 'new Array();').';';

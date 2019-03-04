@@ -13,10 +13,10 @@ class RMFormImageSelect extends RMFormElement
     private $initial = '';
     private $width = 50;
     private $height = 50;
-    private $images = array();
-    private $accepted = array(
-        'jpg','gif','png','bmp','svg'
-    );
+    private $images = [];
+    private $accepted = [
+        'jpg', 'gif', 'png', 'bmp', 'svg',
+    ];
 
     /**
      * @param string Caption of field
@@ -24,6 +24,11 @@ class RMFormImageSelect extends RMFormElement
      * @param string Image slected
      * @param int Width of image thumbnail
      * @param int Height of image thumbnail
+     * @param mixed $caption
+     * @param mixed $name
+     * @param mixed $initial
+     * @param mixed $width
+     * @param mixed $height
      */
     public function __construct($caption, $name, $initial, $width = 50, $height = 50)
     {
@@ -54,10 +59,12 @@ class RMFormImageSelect extends RMFormElement
      * Add images to the control
      * @param mixed value
      * @param string image url
+     * @param mixed $value
+     * @param mixed $image
      */
     public function addImage($value, $image)
     {
-        $this->images[] = array('value' => $value, 'image' => $image);
+        $this->images[] = ['value' => $value, 'image' => $image];
     }
 
     public function render()
@@ -65,31 +72,31 @@ class RMFormImageSelect extends RMFormElement
         global $rmTpl;
 
         $attributes = $this->renderAttributeString();
-        
-        $ret = '<div '. $attributes . ' id="adv-imgsel-'.$this->get('id').'">';
 
-        $ret .= '<label style="width: '.$this->get('width').'px; height: '.$this->get('height').'px;"><input type="radio" name="'.$this->get('name').'" value=""'.(''==$this->get('initial') ? ' checked="checked"' : '').'>';
-        $ret .= '<span title="'.__('None', 'advform').'"></span></label>';
+        $ret = '<div ' . $attributes . ' id="adv-imgsel-' . $this->get('id') . '">';
+
+        $ret .= '<label style="width: ' . $this->get('width') . 'px; height: ' . $this->get('height') . 'px;"><input type="radio" name="' . $this->get('name') . '" value=""' . ('' == $this->get('initial') ? ' checked' : '') . '>';
+        $ret .= '<span title="' . __('None', 'advform') . '"></span></label>';
 
         foreach ($this->images as $img) {
             $v = $img['value'];
             $url = $img['image'];
 
-            $data = array_reverse(explode(".", str_replace(dirname($url) . '/', '', $url)));
+            $data = array_reverse(explode('.', str_replace(dirname($url) . '/', '', $url)));
             if (count($data) < 2) {
                 continue;
             }
 
-            if (!in_array($data[0], $this->accepted)) {
+            if (!in_array($data[0], $this->accepted, true)) {
                 continue;
             }
 
-            $ret .= '<label style="width: '.$this->get('width').'px; height: '.$this->get('height').'px;"><input type="radio" name="'.$this->get('name').'" value="'.$v.'"'.($v==$this->get('initial') ? ' checked="checked"' : '').'>';
-            $ret .= '<span style="background-image: url('.$url.')" title="'.$v.'"></span></label>';
+            $ret .= '<label style="width: ' . $this->get('width') . 'px; height: ' . $this->get('height') . 'px;"><input type="radio" name="' . $this->get('name') . '" value="' . $v . '"' . ($v == $this->get('initial') ? ' checked' : '') . '>';
+            $ret .= '<span style="background-image: url(' . $url . ')" title="' . $v . '"></span></label>';
         }
 
         $ret .= '</div>';
-        
+
         return $ret;
     }
 }

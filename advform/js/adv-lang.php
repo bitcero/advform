@@ -6,7 +6,8 @@ var advFormLang = {
     insertImage: '<?php _e('Insert Image', 'advform'); ?>',
 };
 var imgmgr_title = '<?php _e('Image Manager', 'advforms'); ?>';
-var mgrURL = '<?php echo RMCURL.'/include/tiny-images.php'; ?>';
+var mgrURL = '<?php echo RMCURL . '/include/tiny-images.php'; ?>';
 <?php
     $lang = ob_get_clean();
+
     return $lang;

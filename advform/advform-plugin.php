@@ -26,24 +26,23 @@
  * @url          http://www.redmexico.com.mx
  * @url          http://www.eduardocortes.mx
  */
-
 class AdvformCUPlugin extends RMIPlugin
 {
     public function __construct()
     {
         load_plugin_locale('advform', '', 'rmcommon');
 
-        $this->info = array(
-            'name'          => __('AdvancedForms Plugin', 'advform'),
-            'description'   => __('Improves rmcommon forms by addign new fields and controls', 'advform'),
-            'version'       => array('major'=>1,'minor'=>0,'revision'=>5, 'stage'=>0,'name'=>'AdvancedForms'),
-            'author'        => 'Eduardo Cortes (AKA bitcero)',
-            'email'         => 'i.bitcero@gmail.com',
-            'web'           => 'http://www.redmexico.com.mx',
-            'dir'           => 'advform',
-            'updateurl'     => 'http://www.xoopsmexico.net/modules/vcontrol/',
-            'hasmain'       => true
-        );
+        $this->info = [
+            'name' => __('AdvancedForms Plugin', 'advform'),
+            'description' => __('Improves rmcommon forms by addign new fields and controls', 'advform'),
+            'version' => ['major' => 1, 'minor' => 0, 'revision' => 5, 'stage' => 0, 'name' => 'AdvancedForms'],
+            'author' => 'Eduardo Cortes (AKA bitcero)',
+            'email' => 'i.bitcero@gmail.com',
+            'web' => 'http://www.redmexico.com.mx',
+            'dir' => 'advform',
+            'updateurl' => 'http://www.xoopsmexico.net/modules/vcontrol/',
+            'hasmain' => true,
+        ];
     }
 
     public function on_install()
@@ -98,58 +97,58 @@ class AdvformCUPlugin extends RMIPlugin
         $form->addElement($font);
 
         $slider = new RMFormSlider(__('Sliders Creator:', 'advform'), 'slider');
-        $slider->addField('title', array(
+        $slider->addField('title', [
             'caption' => __('Specify the title for this slider', 'inception'),
             'description' => '',
-            'type' => 'textbox'
-        ));
-        $slider->addField('content', array(
+            'type' => 'textbox',
+        ]);
+        $slider->addField('content', [
             'caption' => __('Text content', 'inception'),
             'description' => '',
-            'type' => 'textarea'
-        ));
-        $slider->addField('image', array(
+            'type' => 'textarea',
+        ]);
+        $slider->addField('image', [
             'caption' => __('Select image for slider', 'inception'),
             'description' => __('Description for this field.', 'xthemes'),
-            'type' => 'imageurl'
-        ));
+            'type' => 'imageurl',
+        ]);
         $form->addElement($slider);
 
         //--
-        $icon = new RMFormIconsPicker(__('All icons:', 'advform'), 'icon', array(
+        $icon = new RMFormIconsPicker(__('All icons:', 'advform'), 'icon', [
             'selected' => 'fa fa-flag',
             'moon' => true,
             'fontawesome' => true,
             'glyphicons' => true,
-            'svg' => true
-        ));
+            'svg' => true,
+        ]);
         $icon->setDescription(__('With FontAwesome and Glyphicons active', 'advform'));
         $form->addElement($icon);
 
         //--
-        $icon = new RMFormIconsPicker(__('Glyphicons Icons:', 'advform'), 'icon1', array(
+        $icon = new RMFormIconsPicker(__('Glyphicons Icons:', 'advform'), 'icon1', [
             'selected' => 'glyphicon glyphicon-plus',
             'fontawesome' => false,
-            'svg' => false
-        ));
+            'svg' => false,
+        ]);
         $icon->setDescription(__('Only Glyphicons active', 'advform'));
         $form->addElement($icon);
 
         //--
-        $icon = new RMFormIconsPicker(__('FontAwesome Icons:', 'advform'), 'icon2', array(
+        $icon = new RMFormIconsPicker(__('FontAwesome Icons:', 'advform'), 'icon2', [
             'selected' => 'fa fa-flag',
             'glyphicons' => false,
-            'svg' => false
-        ));
+            'svg' => false,
+        ]);
         $icon->setDescription(__('Only FontAwesome active', 'advform'));
         $form->addElement($icon);
 
         //--
-        $icon = new RMFormIconsPicker(__('SVG Icons:', 'advform'), 'icon3', array(
+        $icon = new RMFormIconsPicker(__('SVG Icons:', 'advform'), 'icon3', [
             'selected' => 'svg-rmcommon-xoops',
             'glyphicons' => false,
-            'fontawesome' => false
-        ));
+            'fontawesome' => false,
+        ]);
         $icon->setDescription(__('Only FontAwesome active', 'advform'));
         $form->addElement($icon);
 
@@ -163,7 +162,7 @@ class AdvformCUPlugin extends RMIPlugin
         static $instance;
 
         if (!isset($instance)) {
-            $instance = new AdvformCUPlugin();
+            $instance = new self();
         }
 
         return $instance;

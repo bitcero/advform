@@ -27,7 +27,7 @@ class RMFormIconsPicker extends RMFormElement
      * <li><strong>'glyphicons'</strong>: Can be 1 or 0 and indicates if the control must show Glyphicons or not (<em>Default value: 1</em>)</li>
      * </ul>
      */
-    public function __construct($caption, $name, $options = array())
+    public function __construct($caption, $name, $options = [])
     {
         $suppress = ['default', 'fa', 'glyph', 'svg', 'size', 'id'];
         $this->suppressList = array_merge($this->suppressList, $suppress);
@@ -59,8 +59,8 @@ class RMFormIconsPicker extends RMFormElement
     {
         global $cuIcons;
 
-        RMTemplate::get()->add_script('advanced-fields.min.js', 'rmcommon', array( 'directory' => 'plugins/advform', 'footer' => 1, 'id' => 'advform-js' ));
-        RMTemplate::get()->add_style('advforms.min.css', 'rmcommon', array('directory' => 'plugins/advform', 'id' => 'advform-css' ));
+        RMTemplate::get()->add_script('advanced-fields.min.js', 'rmcommon', [ 'directory' => 'plugins/advform', 'footer' => 1, 'id' => 'advform-js' ]);
+        RMTemplate::get()->add_style('advforms.min.css', 'rmcommon', ['directory' => 'plugins/advform', 'id' => 'advform-css' ]);
 
         $attributes = $this->renderAttributeString();
 

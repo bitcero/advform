@@ -19,19 +19,19 @@ class AdvformPluginRmcommonPreload
         }
 
         define('ADVF_INCLUDED', 1);
-        $path = RMCPATH.'/plugins/advform/fields/';
+        $path = RMCPATH . '/plugins/advform/fields/';
 
-        include $path.'webfonts.class.php';
-        include $path.'imageurl.class.php';
-        include $path.'slider.class.php';
-        include $path.'colorselector.class.php';
-        include $path.'imageselect.class.php';
-        include $path.'iconpicker.class.php';
+        include $path . 'webfonts.class.php';
+        include $path . 'imageurl.class.php';
+        include $path . 'slider.class.php';
+        include $path . 'colorselector.class.php';
+        include $path . 'imageselect.class.php';
+        include $path . 'iconpicker.class.php';
 
-        $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', array('footer' => 1, 'directory' => 'plugins/advform'));
-        $rmTpl->add_script('advanced-fields.min.js', 'rmcommon', array('footer' => 1, 'directory' => 'plugins/advform', 'id' => 'advform-js'));
-        $rmTpl->add_style('advforms.min.css', 'rmcommon', array('directory' => 'plugins/advform'));
-        $rmTpl->add_head_script(include_once(RMCPATH.'/plugins/advform/js/adv-lang.php'));
+        $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', ['footer' => 1, 'directory' => 'plugins/advform']);
+        $rmTpl->add_script('advanced-fields.min.js', 'rmcommon', ['footer' => 1, 'directory' => 'plugins/advform', 'id' => 'advform-js']);
+        $rmTpl->add_style('advforms.min.css', 'rmcommon', ['directory' => 'plugins/advform']);
+        $rmTpl->add_head_script(include_once(RMCPATH . '/plugins/advform/js/adv-lang.php'));
     }
 
     public function eventRmcommonLoadFormField($ele, $field)

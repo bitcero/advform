@@ -10,14 +10,13 @@
 
 class RMFormColorSelector extends RMFormElement
 {
-    
-    public function __construct($caption, $name, $initial, $addsharp = false){
-
+    public function __construct($caption, $name, $initial, $addsharp = false)
+    {
         $this->suppressList[] = 'initial';
         $this->suppressList[] = 'sharp';
         $this->suppressList[] = 'id';
 
-        if(is_array($caption)){
+        if (is_array($caption)) {
             parent::__construct($caption);
         } else {
             parent::__construct([]);
@@ -28,36 +27,35 @@ class RMFormColorSelector extends RMFormElement
         }
 
         $this->setIfNotSet('sharp', false);
-        
+
         $this->addClass('input-group adv-color-chooser');
-        
-        if($addsharp && $initial!=''){
-            if(!preg_match("/^#[a-f0-9]{1,}$/is", $initial) && $initial != 'transparent')
-                $this->set('initial', '#'.$initial);
-            else
+
+        if ($addsharp && '' != $initial) {
+            if (!preg_match('/^#[a-f0-9]{1,}$/is', $initial) && 'transparent' != $initial) {
+                $this->set('initial', '#' . $initial);
+            } else {
                 $this->set('initial', $initial);
+            }
         } else {
             $this->set('initial', str_replace('#', '', $initial));
         }
-
     }
-    
-    public function render(){
+
+    public function render()
+    {
         global $rmTpl;
 
         $attributes = $this->renderAttributeString();
 
-        $rmTpl->add_style("colorpicker.css", 'rmcommon');
-        $rmTpl->add_script("colorpicker.js", 'rmcommon');
-        
-        $ret = '<div '.$attributes.' id="adv-color-'.$this->get('id').'">';
-        $ret .= '<span class="input-group-addon previewer" style="background-color: '.(!$this->get('sharp') ? '#'.$this->get('initial') : $this->get('initial')).';">&nbsp;</span>';
-        $ret .= '<input class="form-control" '.($this->get('sharp') ? 'data="#"' : '').' type="text" name="'.$this->get('name').'" id="'.$this->get('id').'" value="'.($this->get('initial')!='' ? $this->get('initial') : ($this->get('sharp') ? '#' : '').'FFF').'" />';
+        $rmTpl->add_style('colorpicker.css', 'rmcommon');
+        $rmTpl->add_script('colorpicker.js', 'rmcommon');
+
+        $ret = '<div ' . $attributes . ' id="adv-color-' . $this->get('id') . '">';
+        $ret .= '<span class="input-group-addon previewer" style="background-color: ' . (!$this->get('sharp') ? '#' . $this->get('initial') : $this->get('initial')) . ';">&nbsp;</span>';
+        $ret .= '<input class="form-control" ' . ($this->get('sharp') ? 'data="#"' : '') . ' type="text" name="' . $this->get('name') . '" id="' . $this->get('id') . '" value="' . ('' != $this->get('initial') ? $this->get('initial') : ($this->get('sharp') ? '#' : '') . 'FFF') . '">';
         $ret .= '<span class="input-group-btn chooser"><button type="button" class="btn btn-default">...</button></span>';
         $ret .= '</div>';
-        
+
         return $ret;
-        
     }
-    
 }

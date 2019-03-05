@@ -8,40 +8,40 @@
 // License: GPL 2.0
 // --------------------------------------------------------------
 
-class AdvformPluginRmcommonPreload{
-    
-    public function eventRmcommonFormLoader(){
+class AdvformPluginRmcommonPreload
+{
+    public static function eventRmcommonFormLoader()
+    {
         global $rmTpl;
 
-        if(defined('ADVF_INCLUDED')) return;
+        if (defined('ADVF_INCLUDED')) {
+            return;
+        }
 
         define('ADVF_INCLUDED', 1);
-        $path = RMCPATH.'/plugins/advform/fields/';
+        $path = RMCPATH . '/plugins/advform/fields/';
 
-        include $path.'webfonts.class.php';
-        include $path.'imageurl.class.php';
-        include $path.'slider.class.php';
-        include $path.'colorselector.class.php';
-        include $path.'imageselect.class.php';
-        include $path.'iconpicker.class.php';
+        include $path . 'webfonts.class.php';
+        include $path . 'imageurl.class.php';
+        include $path . 'slider.class.php';
+        include $path . 'colorselector.class.php';
+        include $path . 'imageselect.class.php';
+        include $path . 'iconpicker.class.php';
 
-        $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', array('footer' => 1, 'directory' => 'plugins/advform'));
-        $rmTpl->add_script('advanced-fields.min.js', 'rmcommon', array('footer' => 1, 'directory' => 'plugins/advform', 'id' => 'advform-js'));
-        $rmTpl->add_style('advforms.min.css', 'rmcommon', array('directory' => 'plugins/advform'));
-        $rmTpl->add_head_script(include_once(RMCPATH.'/plugins/advform/js/adv-lang.php'));
-
+        $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', ['footer' => 1, 'directory' => 'plugins/advform']);
+        $rmTpl->add_script('advanced-fields.min.js', 'rmcommon', ['footer' => 1, 'directory' => 'plugins/advform', 'id' => 'advform-js']);
+        $rmTpl->add_style('advforms.min.css', 'rmcommon', ['directory' => 'plugins/advform']);
+        $rmTpl->add_head_script(require_once RMCPATH . '/plugins/advform/js/adv-lang.php');
     }
 
-    public function eventRmcommonLoadFormField($ele, $field){
-
-        switch ($field->field){
+    public static function eventRmcommonLoadFormField($ele, $field)
+    {
+        switch ($field->field) {
             case 'image-url':
-                $ele = new RMFormImageUrl( $field->caption, $field->name, $field->value);
+                $ele = new RMFormImageUrl($field->caption, $field->name, $field->value);
                 break;
         }
 
         return $ele;
-
     }
-    
 }

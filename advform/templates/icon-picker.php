@@ -1,4 +1,3 @@
-
 <div <?php echo $attributes; ?>>
 
     <!-- Selected indicator -->
@@ -10,7 +9,7 @@
     <!-- SVG icons -->
     <?php if ($this->get('svg')): ?>
         <div class="btn-group <?php echo '' != $this->get('size') ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-svg" id="picker-<?php echo $this->get('id'); ?>">
-            <button type="button" class="btn btn-default dropdown-toggle<?php echo 'svg' == mb_substr($this->get('default'), 0, 3) ? ' active' : ''; ?>" data-toggle="dropdown">
+            <button type="button" class="btn btn-default dropdown-toggle<?php echo 0 === mb_strpos($this->get('default'), 'svg') ? ' active' : ''; ?>" data-toggle="dropdown">
                 <span class="the-icon"><?php _e('SVG Icons', 'advform'); ?></span>
                 <span class="caret"></span>
             </button>
@@ -31,38 +30,38 @@
 
     <!--- FontAwesome Icons -->
     <?php if ($this->get('fa')): ?>
-    <div class="btn-group <?php echo '' != $this->get('size') ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-fa" id="picker-<?php echo $this->get('id'); ?>">
-        <button type="button" class="btn btn-default dropdown-toggle<?php echo 'fa' == mb_substr($this->get('default'), 0, 2) ? ' active' : ''; ?>" data-toggle="dropdown">
-            <span class="the-icon"><?php _e('FontAwesome', 'advform'); ?></span>
-            <span class="caret"></span>
-        </button>
-        <div class="dropdown-menu" role="menu">
-            <div class="icons-container">
-                <span class="fa fa-spin fa-spinner"></span>
+        <div class="btn-group <?php echo '' != $this->get('size') ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-fa" id="picker-<?php echo $this->get('id'); ?>">
+            <button type="button" class="btn btn-default dropdown-toggle<?php echo 0 === mb_strpos($this->get('default'), 'fa') ? ' active' : ''; ?>" data-toggle="dropdown">
+                <span class="the-icon"><?php _e('FontAwesome', 'advform'); ?></span>
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" role="menu">
+                <div class="icons-container">
+                    <span class="fa fa-spin fa-spinner"></span>
+                </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 
     <?php if ($this->get('glyph')): ?>
-    <!-- Glyphicons Icons -->
-    <div class="btn-group <?php echo '' != $this->get('size') ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-glyph" id="picker-<?php echo $this->get('id'); ?>">
-        <button type="button" class="btn btn-default dropdown-toggle<?php echo 'glyphicon' == mb_substr($this->get('default'), 0, 9) ? ' active' : ''; ?>" data-toggle="dropdown">
-            <span class="the-icon"><?php _e('Glyphicons', 'advform'); ?></span>
-            <span class="caret"></span>
-        </button>
-        <div class="dropdown-menu" role="menu">
-            <div class="icons-container">
-                <span class="fa fa-spin fa-spinner"></span>
+        <!-- Glyphicons Icons -->
+        <div class="btn-group <?php echo '' != $this->get('size') ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-glyph" id="picker-<?php echo $this->get('id'); ?>">
+            <button type="button" class="btn btn-default dropdown-toggle<?php echo 0 === mb_strpos($this->get('default'), 'glyphicon') ? ' active' : ''; ?>" data-toggle="dropdown">
+                <span class="the-icon"><?php _e('Glyphicons', 'advform'); ?></span>
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" role="menu">
+                <div class="icons-container">
+                    <span class="fa fa-spin fa-spinner"></span>
+                </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 
     <!-- IcoMoon Icons -->
     <?php if ($this->get('moon')): ?>
         <div class="btn-group <?php echo '' != $this->get('size') ? 'button-group-' . $this->get('size') : ''; ?> adv-icons-icomoon" id="picker-<?php echo $this->get('id'); ?>">
-            <button type="button" class="btn btn-default dropdown-toggle<?php echo 'icon' == mb_substr($this->get('default'), 0, 9) ? ' active' : ''; ?>" data-toggle="dropdown">
+            <button type="button" class="btn btn-default dropdown-toggle<?php echo 0 === mb_strpos($this->get('default'), 'icon') ? ' active' : ''; ?>" data-toggle="dropdown">
                 <span class="the-icon"><?php _e('IcoMoon', 'advform'); ?></span>
                 <span class="caret"></span>
             </button>

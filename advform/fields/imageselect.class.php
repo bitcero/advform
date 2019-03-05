@@ -14,21 +14,14 @@ class RMFormImageSelect extends RMFormElement
     private $width = 50;
     private $height = 50;
     private $images = [];
-    private $accepted = [
-        'jpg', 'gif', 'png', 'bmp', 'svg',
-    ];
+    private $accepted = ['jpg', 'gif', 'png', 'bmp', 'svg'];
 
     /**
-     * @param string Caption of field
-     * @param string Name of form field
-     * @param string Image slected
-     * @param int Width of image thumbnail
-     * @param int Height of image thumbnail
-     * @param mixed $caption
-     * @param mixed $name
-     * @param mixed $initial
-     * @param mixed $width
-     * @param mixed $height
+     * @param string $caption Caption of field
+     * @param string $name Name of form field
+     * @param string $initial Image slected
+     * @param int $width Width of image thumbnail
+     * @param int $height Height of image thumbnail
      */
     public function __construct($caption, $name, $initial, $width = 50, $height = 50)
     {
@@ -57,10 +50,8 @@ class RMFormImageSelect extends RMFormElement
 
     /**
      * Add images to the control
-     * @param mixed value
-     * @param string image url
-     * @param mixed $value
-     * @param mixed $image
+     * @param mixed $valuevalue
+     * @param string $image image url
      */
     public function addImage($value, $image)
     {

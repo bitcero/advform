@@ -17,10 +17,8 @@ class RMFormWebfonts extends RMFormElement
 
     /**
      * @param string $caption
-     * @param string Unique id
-     * @param int Initial selected option
-     * @param mixed $name
-     * @param null|mixed $selected
+     * @param string $name 
+     * @param null|int $selected Initial selected option
      * @return RMFormWebfonts
      */
     public function __construct($caption, $name, $selected = null)
@@ -41,8 +39,7 @@ class RMFormWebfonts extends RMFormElement
         $hdrs = [
             'http' => [
                 'method' => 'GET',
-                'header' => 'Accept-language: ' . _LANGCODE . "\r\n" .
-                                    "Referer: \r\n",
+                'header' => 'Accept-language: ' . _LANGCODE . "\r\n" ."Referer:\r\n",
             ],
         ];
 
@@ -62,7 +59,7 @@ class RMFormWebfonts extends RMFormElement
         $rtn .= '<div class="input-group"><select name="selector-' . $this->getName() . '" id="selector-' . $this->id() . '" class="form-control">';
         $rtn .= '<option value="">' . __('Select font...', 'advform') . '</option>';
         foreach ($fonts['items'] as $font) {
-            $rtn .= '<option value="' . (str_replace(' ', '+', $font['family'])) . '">' . $font['family'] . '</option>';
+            $rtn .= '<option value="' . str_replace(' ', '+', $font['family']) . '">' . $font['family'] . '</option>';
         }
         $rtn .= '</select><span class="input-group-btn"><button type="button" class="btn btn-show" data-status="hidden" data-id="webfont-' . $this->id() . '"><span class="fa fa-caret-down"></span></button></span></div>';
         $rtn .= 1 != ini_get('allow_url_fopen') ? __('fopen_wrappers are disabled. Webfonts could not retrieved!', 'advform') : '';

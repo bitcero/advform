@@ -10,7 +10,7 @@
 
 class AdvformPluginRmcommonPreload
 {
-    public function eventRmcommonFormLoader()
+    public static function eventRmcommonFormLoader()
     {
         global $rmTpl;
 
@@ -31,10 +31,10 @@ class AdvformPluginRmcommonPreload
         $rmTpl->add_script('load-script.php?script=webfonts', 'rmcommon', ['footer' => 1, 'directory' => 'plugins/advform']);
         $rmTpl->add_script('advanced-fields.min.js', 'rmcommon', ['footer' => 1, 'directory' => 'plugins/advform', 'id' => 'advform-js']);
         $rmTpl->add_style('advforms.min.css', 'rmcommon', ['directory' => 'plugins/advform']);
-        $rmTpl->add_head_script(include_once(RMCPATH . '/plugins/advform/js/adv-lang.php'));
+        $rmTpl->add_head_script(require_once RMCPATH . '/plugins/advform/js/adv-lang.php');
     }
 
-    public function eventRmcommonLoadFormField($ele, $field)
+    public static function eventRmcommonLoadFormField($ele, $field)
     {
         switch ($field->field) {
             case 'image-url':

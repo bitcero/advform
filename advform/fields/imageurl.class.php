@@ -12,7 +12,7 @@ class RMFormImageUrl extends RMFormElement
 {
     private $default = '';
 
-    public function __construct($caption, $name, $value = '')
+    public function __construct($caption, $name = '', $value = '')
     {
         $this->setCaption($caption);
         $this->setName($name);
